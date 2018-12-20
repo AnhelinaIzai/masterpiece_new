@@ -1,0 +1,23 @@
+<%= form_for @paint, url: paints_path do |f| %>
+
+<% if @paint.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@paint.errors.count, "error") %>
+     saved:</h2>
+ 
+    <ul>
+    <% @paint.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <p>Name: <%= f.text_field :name %><br />
+  Description: <%= f.text_area :description, size: "60x10" %><br />
+  Price: <%= f.text_field :price%></br>
+  <%= f.file_field :picture %>
+  <%= f.label :all_tags%>
+  Tags: <%= f.text_field :all_tags%></br>
+  <%= f.submit "Add" %>
+<% end %>
