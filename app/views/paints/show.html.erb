@@ -1,0 +1,9 @@
+
+
+	<%= image_tag(@paint.picture_url, size: "150x200")%> <br>
+	<b><%= @paint.name %></b><br />
+	Category: <%= Category.find_by(id: @paint.category_id).try(:name) %> <br>
+       <b><%= @paint.description %></b><br />
+       Price: <%= @paint.price %>$</br>
+     By user:    <%= link_to @paint.user.email.split('@').first, userparam_path(@userparam.id) %>
+     

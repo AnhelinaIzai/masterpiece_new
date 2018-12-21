@@ -1,12 +1,19 @@
-<center><h2>Hi! If you looking for a masterpiece, this site is special for you!</br> </h2><center>
-    <% @paints.each do |paint| %>
+<center><h2>Hi! If you looking for a masterpiece, this site is special for you!</br> </h2></center>
+		<p align="right"><%= search_form_for @q do |f| %>
+  <%= f.search_field :name_cont %>
+  <%= f.submit "Found" %>
+  <% end %></p> 
 
-<p>	<%= image_tag(paint.picture_url, size: "150x200")%><br>
+    
+
+<center><% @paint.each do |paint| %>
+	<p>	<%= image_tag(paint.picture_url, size: "150x200")%><br>
        	<b><%= paint.name %></b><br />
        <b><%= paint.description %></b><br />
-       Price: <%= paint.price %></br>
-       <%=link_to "Buy", paints_path%>
+       Price: <%= paint.price %>$</br>
+       <%=link_to "Buy", paint_path(paint.id)%>
         <% if user_signed_in? && paint.user_id == current_user.id%></br>
        <%= link_to "Read More", edit_paint_path(paint.id) %></p>
     <% end %>
     <%end%>
+</center> 	

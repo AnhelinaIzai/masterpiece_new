@@ -1,6 +1,6 @@
 class UserparamsController < ApplicationController
 before_action :authenticate_user!
-
+before_action :find , only:[:show, :edit, :update]
   def new
     @userparam = Userparam.new
   end
@@ -17,11 +17,9 @@ before_action :authenticate_user!
   end
   
   def edit
-    @userparam = current_user.userparam
   end
   
   def update
-    @userparam = Userparam.find_by(user_id: current_user.id)
     if @userparam.update(profile_params)
        redirect_to userparam_path(@userparam.id)
     end
@@ -33,6 +31,8 @@ private
   def profile_params
     params.require(:userparam).permit(:user_id, :email, :firstname, :lastname, :place, :avatar)
   end
-  
+  def find
+    @userparam = Userparam.find_by(params[:id])
+  end
 end
 

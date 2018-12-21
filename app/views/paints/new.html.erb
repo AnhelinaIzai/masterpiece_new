@@ -14,10 +14,10 @@
 <% end %>
 
   <p>Name: <%= f.text_field :name %><br />
+    <%= f.select :category_id  , Category.all.collect {|p| [ p.name, p.id ]}, :prompt => 'Choose a Category'%> <br>`
   Description: <%= f.text_area :description, size: "60x10" %><br />
   Price: <%= f.text_field :price%></br>
   <%= f.file_field :picture %>
-  <%= f.label :all_tags%>
-  Tags: <%= f.text_field :all_tags%></br>
+ 
   <%= f.submit "Add" %>
 <% end %>
